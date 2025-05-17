@@ -169,4 +169,8 @@ cython_debug/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db 
+Thumbs.db
+
+# SQLite database files
+*.sqlite
+!data/ecommerce_sample_data.sqlite.zip 

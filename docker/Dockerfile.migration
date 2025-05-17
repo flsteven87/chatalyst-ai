@@ -1,0 +1,21 @@
+# 使用 Python 3.12 作為基礎映像
+FROM python:3.12-slim
+
+# 設置工作目錄
+WORKDIR /app
+
+# 安裝 PostgreSQL 客戶端庫
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# 複製必要的檔案
+COPY requirements.txt .
+COPY app/db/migrate_sqlite_to_postgres.py ./migrate.py
+
+# 安裝依賴
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 設置入口點
+CMD ["python", "migrate.py"] 
