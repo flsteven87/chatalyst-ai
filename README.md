@@ -50,6 +50,12 @@ ChataLyst AI 是一個自然語言驅動的 SQL 查詢生成與執行系統，�
    cp .env.example .env
    # 編輯 .env 檔案設定您的資料庫和 API 密鑰
    ```
+   `.env` 檔案範例包含以下變數：
+   - `APP_ENV`：執行環境，預設為 `development`
+   - `DEBUG`：是否啟用除錯模式
+   - `DB_TYPE`：資料庫類型，預設 `sqlite`
+   - `SQLITE_DB_PATH`：SQLite 資料庫檔案位置
+   - `OPENAI_API_KEY`：您的 OpenAI API 金鑰
 
 ### 運行
 
