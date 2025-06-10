@@ -1,10 +1,23 @@
-# ChataLyst AI 依賴項
-# 基礎依賴
-python-dotenv>=1.0.0
-pydantic>=2.4.2
-sqlalchemy>=2.0.23
+# Vanna AI - 分開安裝模仿本地環境
+vanna==0.7.9
+vanna[postgres]==0.7.9
 
-# 資料庫依賴
-aiosqlite>=0.19.0
-psycopg>=3.1.12
-psycopg-pool>=3.1.8 
+# Database drivers - 匹配本地環境版本
+psycopg>=3.2.0
+SQLAlchemy>=2.0.0  # Vanna PostgreSQL 功能的關鍵依賴
+
+# AI and data processing - 鎖定兼容版本
+openai==1.82.0
+chromadb==1.0.10
+
+# Environment and configuration
+python-dotenv
+pydantic>=2.0.0
+pydantic-settings
+
+# Web framework and UI
+streamlit
+plotly
+
+# Data processing
+pandas

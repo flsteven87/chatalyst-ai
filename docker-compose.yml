@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  chatalyst:
+    build: .
+    container_name: chatalyst-app
+    environment:
+      - PYTHONPATH=/app
+      - ENV=production  # 指定環境類型，讓 settings.py 知道要載入 .env.prod
+    env_file:
+      - .env.prod
+    ports:
+      - "8501:8501"  # Streamlit 端口
+    volumes:
+      # 映射 data 和 logs 目錄，使用權限一致的 bind mount
+      - ./data:/app/data:rw
+      - ./logs:/app/logs:rw
+    # 加入外部網路以連接 PostgreSQL
+    networks:
+      - default
+      - analytics_network
+    restart: unless-stopped
+    # 以 root 用戶運行避免權限問題（GCP 環境適用）
+    user: "0"
+    # 設定記憶體限制
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
+
+# 連接到 analytics-data-migration 專案的網路
+networks:
+  analytics_network:
+    external: true
+    name: analytics-data-migration_default 
